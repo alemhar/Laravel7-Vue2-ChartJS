@@ -14,4 +14,9 @@
 - On the Terminal, Change Directory to the directory.
 - Run "composer update"
 - Run "npm install"
+
+## Usage
+
 - Run "php artisan serve"
+
+Open "http://localhost:8000" in browser
