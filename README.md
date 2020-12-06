@@ -17,10 +17,15 @@ Start Local MySQL Server and create database: laravel, user: root, password: [no
 
 - Run "composer update"
 - Run "npm install"
+- Run "npm run dev"
+- copy "env.example" to ".env"
+- Run "php artisan key:generate"
 - Run "php artisan migrate"
+- Run "php artisan serve"
+
 
 ## Usage
 
-- Run "php artisan serve"
-
 Open "http://localhost:8000" in browser
+
+
