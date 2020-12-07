@@ -158,7 +158,7 @@ const app = new Vue({
         
         setInterval(() => {
             this.getUserTasks();
-        }, 30000);
+        }, 30000); 
 
     },
     components:{

@@ -117,7 +117,7 @@ class TaskController extends Controller
         $user_id = $id;
         
         $taskhistory = TaskStatus::where('user_id',$user_id)
-            ->whereDate('created_at', '>=', $logTimeLessOneHour)
+            //->whereDate('created_at', '>=', $logTimeLessOneHour)
             ->orderBy('log_time')
             ->get();
 
