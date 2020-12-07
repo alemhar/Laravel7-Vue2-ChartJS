@@ -113,12 +113,10 @@ class TaskController extends Controller
     {   
         
         
-        //$logTimeLessOneHour =  Date(Carbon::now()->subHour());
         $user_id = $id;
         
         $taskhistory = TaskStatus::where('user_id',$user_id)
             ->whereDate('created_at', '>=', Carbon::now()->subHour())
-            //->whereDate('created_at', '>=', Carbon::now()->subHour())
             ->orderBy('log_time')
             ->get();
         if(count($taskhistory) > 0){
