@@ -113,11 +113,11 @@ class TaskController extends Controller
     {   
         
         
-        $logTimeLessOneHour = Date(Carbon::now()->subHour());
+        //$logTimeLessOneHour =  Date(Carbon::now()->subHour());
         $user_id = $id;
         
         $taskhistory = TaskStatus::where('user_id',$user_id)
-            //->whereDate('created_at', '>=', $logTimeLessOneHour)
+            ->whereDate('created_at', '>=', Carbon::now()->subHour())
             ->orderBy('log_time')
             ->get();
 
@@ -126,7 +126,7 @@ class TaskController extends Controller
 
         $oldest_log_time = $taskhistory[$oldest_log_idx]->log_time;
         
-        return ['taskhistory' => $taskhistory,'oldest_log_time' => $oldest_log_time, 'logTimeLessOneHour' => $logTimeLessOneHour];
+        return ['taskhistory' => $taskhistory,'oldest_log_time' => $oldest_log_time];
 
     }
 
