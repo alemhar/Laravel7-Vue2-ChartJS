@@ -117,7 +117,7 @@ class TaskController extends Controller
         $user_id = $id;
         
         $taskhistory = TaskStatus::where('user_id',$user_id)
-            ->whereDate('created_at', '>=', date(Carbon::now()->subHour()))
+            //->whereDate('created_at', '>=', date(Carbon::now()->subHour()))
             //->whereDate('created_at', '>=', Carbon::now()->subHour())
             ->orderBy('log_time')
             ->get();
