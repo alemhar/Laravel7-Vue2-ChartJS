@@ -87913,7 +87913,8 @@ var app = new Vue({
     pending_tasks: [],
     completed_tasks: [],
     task_history: [],
-    task_data: []
+    task_data: [],
+    timer: null
   },
   methods: {
     showAddTaskModal: function showAddTaskModal() {
@@ -87941,6 +87942,7 @@ var app = new Vue({
     getUserTasks: function getUserTasks() {
       var _this2 = this;
 
+      console.log('Refresh Page');
       axios.get('/api/task/' + this.user_id).then(function (data) {
         _this2.tasks = data.data;
         _this2.pending_tasks = _this2.tasks.data.filter(function (task) {
@@ -88029,8 +88031,15 @@ var app = new Vue({
       return fullYear + "-" + month + "-" + day + " " + strTime;
     }
   },
-  mounted: function mounted() {
+  mounted: function mounted() {//this.getUserTasks();
+  },
+  created: function created() {
+    var _this4 = this;
+
     this.getUserTasks();
+    setInterval(function () {
+      _this4.getUserTasks();
+    }, 30000);
   },
   components: {
     TaskList: _components_TaskList_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -88089,14 +88098,13 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!***********************************************!*\
   !*** ./resources/js/components/LineChart.vue ***!
   \***********************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _LineChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LineChart.vue?vue&type=script&lang=js& */ "./resources/js/components/LineChart.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _LineChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _LineChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 var render, staticRenderFns
 
 
@@ -88126,7 +88134,7 @@ component.options.__file = "resources/js/components/LineChart.vue"
 /*!************************************************************************!*\
   !*** ./resources/js/components/LineChart.vue?vue&type=script&lang=js& ***!
   \************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

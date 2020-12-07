@@ -31,6 +31,7 @@ const app = new Vue({
         completed_tasks: [],
         task_history: [],
         task_data: [],
+        timer: null
 
     },
     methods: {
@@ -58,8 +59,10 @@ const app = new Vue({
 
         },
         getUserTasks(){
+            console.log('Refresh Page');
             axios.get('/api/task/'+this.user_id)
               .then((data)=> {
+
                     this.tasks = data.data;
                     this.pending_tasks = this.tasks.data.filter((task) => { return task.is_completed == 0 });
                     this.completed_tasks = this.tasks.data.filter((task) => { return task.is_completed == 1 });
@@ -68,6 +71,7 @@ const app = new Vue({
               .catch((error)=> {
                 console.log(error);
               });
+              
         },
         RefreshView(){
             this.getUserTasks();
@@ -91,7 +95,6 @@ const app = new Vue({
                     data: this.task_data // Tasks
                 }]
             }
-
 
         },
         getTaskHistory(){
@@ -146,10 +149,16 @@ const app = new Vue({
             var strTime = hours + ':' + minutes + ':00';
             return fullYear + "-" +month + "-" + day + " " + strTime;
           }
-
     },
     mounted(){
+        //this.getUserTasks();
+    },
+    created(){
         this.getUserTasks();
+        
+        setInterval(() => {
+            this.getUserTasks();
+        }, 30000);
 
     },
     components:{
