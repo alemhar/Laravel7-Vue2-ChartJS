@@ -19,7 +19,15 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    return 'TEST';
+    echo Carbon::now();
+    //echo '<br>';
+    $taskhistory = TaskStatus::where('user_id',1)
+            ->whereDate('created_at', '>=', date(Carbon::now()->subHour()))
+            //->whereDate('created_at', '>=', Carbon::now()->subHour())
+            ->orderBy('log_time')
+            ->get();
+
+    return $taskhistory;        
     
 });
 
