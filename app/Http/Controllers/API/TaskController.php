@@ -117,16 +117,22 @@ class TaskController extends Controller
         $user_id = $id;
         
         $taskhistory = TaskStatus::where('user_id',$user_id)
-            //->whereDate('created_at', '>=', date(Carbon::now()->subHour()))
+            ->whereDate('created_at', '>=', Carbon::now()->subHour())
             //->whereDate('created_at', '>=', Carbon::now()->subHour())
             ->orderBy('log_time')
             ->get();
+        if(count($taskhistory) > 0){
+            
+            $lastest_log_idx = $taskhistory->keys()->last();
+            $oldest_log_idx = $taskhistory->keys()->first();
 
-        $lastest_log_idx = $taskhistory->keys()->last();
-        $oldest_log_idx = $taskhistory->keys()->first();
+            $oldest_log_time = $taskhistory[$oldest_log_idx]->log_time;
+        } else {
+            $lastest_log_idx = 0;
+            $oldest_log_idx = 0;
+            $oldest_log_time = 0;
 
-        $oldest_log_time = $taskhistory[$oldest_log_idx]->log_time;
-        
+        }
         return ['taskhistory' => $taskhistory,'oldest_log_time' => $oldest_log_time];
 
     }

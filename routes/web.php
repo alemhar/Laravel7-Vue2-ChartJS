@@ -20,9 +20,10 @@ Route::get('/', function () {
 
 Route::get('/test', function () {
     echo Carbon::now();
-    //echo '<br>';
+    echo '\n';
+    echo Carbon::now()->subHour();
     $taskhistory = TaskStatus::where('user_id',1)
-            ->whereDate('created_at', '>=', date(Carbon::now()->subHour()))
+            ->whereDate('created_at', '>=', Carbon::now()->subHour())
             //->whereDate('created_at', '>=', Carbon::now()->subHour())
             ->orderBy('log_time')
             ->get();
